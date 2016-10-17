@@ -1,0 +1,59 @@
+1.依赖库
+sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler libboost-all-dev
+sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
+sudo apt-get install libatlas-base-dev
+
+www.opencv.org 下载opencv3.1
+sudo apt-get install cmake-gui
+cmake对opencv进行编译，
+对存放文件夹
+make
+sudo make install
+编译好的文件默认存放位置是 /usr/local/include /usr/local/lib
+pkg-config --modversion opencv 查询opencv版本
+
+developer.nvidia.com 下载cuda7.5+cudnn_v5
+dpkg -i cuda*.deb
+sudo apt-get update
+sudo apt-get install cuda //有时会未满足依赖项，可以先到/var/cuda中安装cuda-license 及 cuda-misc-headers,再使用sudo apt-get install cuda
+及sudo apt-get -f install
+chmod a+r /usr/local/include/cudnn.h
+sudo ldconfig /usr/local/cuda/lib64 //添加该库到默认
+(或sudo gedit /etc/ld.so.conf.d/cuda.conf 添加 /usr/local/cuda-7.5/lib64 之后sudo ldconfig；或
+export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64\
+                         ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}})
+
+$ sudo cp include/cudnn.h /usr/local/include
+$ sudo cp lib64/libcudnn.* /usr/local/lib
+b. 链接cuDNN的库文件
+$ sudo ln -sf /usr/local/lib/libcudnn.so.4.0.7 /usr/local/lib/libcudnn.so.4
+$ sudo ln -sf /usr/local/lib/libcudnn.so.4 /usr/local/lib/libcudnn.so
+$ sudo ldconfig -v
+
+使用cmake对caffe编译/makefile对caffe编译
+cmake：mkdir build
+cd build
+cmake ..
+make all
+make install
+make runtest
+
+makefile:首先创建并根据example编辑makefile.config
+make
+
+
+sh data/mnist/get_mnist.sh
+重建lmdb文件,Caffe支持多种数据格式输入网络，包括Image(.jpg, .png等)，leveldb，lmdb，HDF5等
+sh examples/mnist/create_mnist.sh
+生成mnist-train-lmdb 和 mnist-train-lmdb文件夹，这里包含了lmdb格式的数据集
+训练mnist
+sh examples/mnist/train_lenet.sh
+
+pycaffe
+sudo apt-get install python-pip
+pip install pydot
+
+solution to "cannot find caffe.pb.h":
+protoc src/caffe/proto/caffe.proto --cpp_out=.
+mkdir include/caffe/proto
+mv src/caffe/proto/caffe.pb.h include/caffe/proto
