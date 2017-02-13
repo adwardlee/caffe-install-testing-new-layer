@@ -1,0 +1,6 @@
+make all
+make test
+
+build/test/test.testbin --gtest_list_tests
+
+build/test/test.testbin --gtest_filter='*Name of the new layer*'
