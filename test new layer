@@ -1,3 +1,7 @@
+At first,Write tests in test/test_your_layer.cpp which can be written according to test_convolution_layer.cpp.
+Use test/test_gradient_check_util.hpp to check that your Forward and Backward implementations are in numerical agreement
+
+
 make all
 make test
 
