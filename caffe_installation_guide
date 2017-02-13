@@ -23,11 +23,14 @@ sudo ldconfig /usr/local/cuda/lib64 //添加该库到默认
 export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64\
                          ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}})
 
-$ sudo cp include/cudnn.h /usr/local/include
-$ sudo cp lib64/libcudnn.* /usr/local/lib
-b. 链接cuDNN的库文件
-$ sudo ln -sf /usr/local/lib/libcudnn.so.4.0.7 /usr/local/lib/libcudnn.so.4
-$ sudo ln -sf /usr/local/lib/libcudnn.so.4 /usr/local/lib/libcudnn.so
+$ sudo cp -P include/cudnn.h /usr/local/cuda/include
+$ sudo cp -P lib64/libcudnn* /usr/local/cuda/lib64
+$ sudo chmod a+r /usr/local/cuda/lib64/libcudnn*
+
+Adding -P retains the symbolic links and avoids the message:
+
+/sbin/ldconfig.real: /usr/lib/x86_64-linux-gnu/libcudnn.so.5 is not a symbolic link
+
 $ sudo ldconfig -v
 
 使用cmake对caffe编译/makefile对caffe编译
