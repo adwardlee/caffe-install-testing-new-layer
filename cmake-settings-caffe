@@ -3,7 +3,7 @@ OpenCV_DIR=/home/xxx/opencv/build/  cmake .. -DUSE_MPI=ON -DBLAS=open -DMPI_CXX_
 -DBOOST_INCLUDEDIR=/share/apps/caffe-deps/include/ -DBOOST_LIBDIR=/share/apps/caffe-deps/lib/ 
 -DGFLAGS_INCLUDE_DIR=/share/apps/caffe-deps/include -DGFLAGS_LIBRARY=/share/apps/caffe-deps/lib/libgflags.a 
 -DGLOG_INCLUDE_DIR=/share/apps/caffe-deps/include/ -DGLOG_LIBRARY=/share/apps/caffe-deps/lib/libglog.so 
--DPYTHON_LIBRARY=/home/lijun/anaconda2/lib 
--DPYTHON_INCLUDE_DIR=/home/lijun/anaconda2/include:/home/lijun/anaconda2/include/python2.7 
+-DPYTHON_LIBRARY=/opt/python/lib 
+-DPYTHON_INCLUDE_DIR=/opt/python/include/python2.7 
 -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-7.5 -DCUDNN_INCLUDE=/share/apps/cudnn51/include 
 -DCUDNN_LIBRARY=/share/apps/cudnn51/lib64/libcudnn.so
