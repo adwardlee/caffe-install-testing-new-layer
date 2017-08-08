@@ -1,0 +1,4 @@
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64:/usr/lib:/home/lijun/dependency/caffe-deps/lib:/home/lijun/dependency/ffmpeg/lib:/home/lijun/opencv/build/lib:/home/lijun/dependency/python/lib/python2.7/site-packages:/home/lijun/dependency/python/lib/python2.7:/home/lijun/dependency/cuda8.0/lib64:/home/lijun/dependency/openmpi/lib:/home/lijun/dependency/cudnn-8-51/lib64:/home/lijun/atlas/lib
+export CPATH=$CPATH:/home/lijun/dependency/caffe-deps/include:/home/lijun/dependency/cudnn-8-51/include:/home/lijun/dependency/ffmpeg/include:/home/lijun/dependency/cuda8.0/include:/home/lijun/dependency/cudnn-8-51/include:/home/lijun/opencv/include:/home/lijun/dependency/python/include/python2.7:/home/lijun/atlas/include
+export PATH=$PATH:/home/lijun/dependency/python/bin:/home/lijun/dependency/openmpi/bin:/usr/lib64/qt-3.3/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/lijun/dependency/cuda8.0/bin:/home/lijun/anaconda2/bin
+

@@ -1,0 +1,9 @@
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64:/usr/lib:/home/lijun/dependency/caffe-deps/lib:/home/lijun/dependency/ffmpeg/lib:/home/lijun/opencv/build/lib:/home/lijun/dependency/python/lib/python2.7/site-packages:/home/lijun/dependency/python/lib/python2.7:/home/lijun/dependency/cuda-7.5/lib64:/home/lijun/dependency/openmpi/lib:/home/lijun/dependency/cudnn51/lib64:/home/lijun/proj/lib/caffe-action-mpi/build/lib:/home/lijun/atlas/lib
+export CPATH=$CPATH:/home/lijun/dependency/caffe-deps/include:/home/lijun/dependency/cudnn51/include:/home/lijun/dependency/ffmpeg/include:/home/lijun/dependency/cuda-7.5/include:/home/lijun/dependency/cudnn51/include:/home/lijun/opencv/include:/home/lijun/dependency/python/include/python2.7:/home/lijun/atlas/include
+export PATH=$PATH:/home/lijun/dependency/python/bin:/home/lijun/dependency/openmpi/bin:/usr/lib64/qt-3.3/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/lijun/dependency/cuda-7.5/bin
+
+
+OpenCV_DIR=/home/lijun/opencv/build/
+cmake .. -DUSE_MPI=ON -DBLAS=open -DMPI_CXX_COMPILER="/home/lijun/dependency/openmpi/bin/mpicxx" -DBOOST_INCLUDEDIR=/home/lijun/dependency/caffe-deps/include/ -DBOOST_LIBDIR=/home/lijun/dependency/caffe-deps/lib/ -DGFLAGS_INCLUDE_DIR=/home/lijun/dependency/caffe-deps/include -DGFLAGS_LIBRARY=/home/lijun/dependency/caffe-deps/lib/libgflags.a -DGLOG_INCLUDE_DIR=/home/lijun/dependency/caffe-deps/include/ -DGLOG_LIBRARY=/home/lijun/dependency/caffe-deps/lib/libglog.so -DPYTHON_LIBRARY=/home/lijun/dependency/python/lib/libpython2.7.so -DPYTHON_INCLUDE_DIR=/home/lijun/dependency/python/include/python2.7 -DCUDA_TOOLKIT_ROOT_DIR=/home/lijun/dependency/cuda-7.5 -DCUDNN_INCLUDE=/home/lijun/dependency/cudnn51/include -DCUDNN_LIBRARY=/home/lijun/dependency/cudnn51/lib64/libcudnn.so -DPROTOBUF_PROTOC_EXECUTABLE=/usr/bin/protoc -DPROTOBUF_LIBRARY=/usr/lib64/libprotobuf.so
+
+
