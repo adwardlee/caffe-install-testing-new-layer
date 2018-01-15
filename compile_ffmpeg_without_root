@@ -1,5 +1,8 @@
 ##compile ffmpeg in linux without root
 
+
+
+#### !!!! disable static !!!####
 Yasm
 
 cd ~/ffmpeg_sources
