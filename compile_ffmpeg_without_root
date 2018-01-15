@@ -6,7 +6,7 @@ cd ~/ffmpeg_sources
 git clone --depth 1 git://github.com/yasm/yasm.git
 cd yasm
 autoreconf -fiv
-./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin" --enable-shared --disable-static
+./configure --prefix="/home/vis/lijun/ffmpeg_libs" --bindir="/home/vis/lijun/ffmpeg_libs/bin" --enable-shared --disable-static
 make
 make install
 make distclean
