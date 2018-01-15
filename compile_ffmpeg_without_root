@@ -1,0 +1,111 @@
+##compile ffmpeg in linux without root
+
+Yasm
+
+cd ~/ffmpeg_sources
+git clone --depth 1 git://github.com/yasm/yasm.git
+cd yasm
+autoreconf -fiv
+./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin" --enable-shared --disable-static
+make
+make install
+make distclean
+
+x264
+
+cd ~/ffmpeg_sources
+git clone --depth 1 git://git.videolan.org/x264
+cd x264
+PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" 
+./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin" --enable-shared --disable-static
+make
+make install
+make distclean
+
+x265
+cd ~/ffmpeg_sources
+wget http://ftp.videolan.org/pub/videolan/x265/x265_1.9.tar.gz
+tar xvf x265_1.9.tar.gz
+cd ~/ffmpeg_sources/x265/build/linux
+cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$HOME/ffmpeg_build" -DENABLE_SHARED:bool=on -DDISABLE_STATIC:bool=off  ../../source
+make
+make install
+
+Fdk-aac
+cd ~/ffmpeg_sources
+git clone --depth 1 git://git.code.sf.net/p/opencore-amr/fdk-aac
+cd fdk-aac
+autoreconf -fiv
+./configure --prefix="$HOME/ffmpeg_build" --enable-shared --disable-static
+make
+make install
+make distclean
+
+Lame
+cd ~/ffmpeg_sources
+curl -L -O http://downloads.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz
+tar xzvf lame-3.99.5.tar.gz
+cd lame-3.99.5
+./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin" --enable-shared --disable-static --enable-nasm
+make
+make install
+make distclean
+
+Opus
+cd ~/ffmpeg_sources
+git clone http://git.opus-codec.org/opus.git
+cd opus
+autoreconf -fiv
+./configure --prefix="$HOME/ffmpeg_build" --enable-shared --disable-static
+make
+make install
+make distclean
+
+Ogg
+cd ~/ffmpeg_sources
+curl -O http://downloads.xiph.org/releases/ogg/libogg-1.3.2.tar.gz
+tar xzvf libogg-1.3.2.tar.gz
+cd libogg-1.3.2
+./configure --prefix="$HOME/ffmpeg_build" --enable-shared --disable-static
+make
+make install
+make distclean
+
+Vorbis
+cd ~/ffmpeg_sources
+curl -O http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.4.tar.gz
+tar xzvf libvorbis-1.3.4.tar.gz
+cd libvorbis-1.3.4
+LDFLAGS="-L$HOME/ffmeg_build/lib" CPPFLAGS="-I$HOME/ffmpeg_build/include" ./configure --prefix="$HOME/ffmpeg_build" --with-ogg="$HOME/ffmpeg_build" --enable-shared --disable-static
+make
+make install
+make distclean
+
+Vpx
+cd ~/ffmpeg_sources
+git clone --depth 1 https://chromium.googlesource.com/webm/libvpx.git
+cd libvpx
+./configure --prefix="$HOME/ffmpeg_build" --enable-shared --disable-static
+make
+make install
+make clean
+
+Finally, FFMPEG
+
+Now you need to set environmental variables to properly install, in Shared mode, FFMPEG. Install all in Shared mode is necessary for properly install of OpenCV.
+
+export LD_LIBRARY_PATH=$HOME/ffmpeg_build/lib/:$LD_LIBRARY_PATH
+export PKG_CONFIG_PATH=$HOME/ffmpeg_build/lib/pkgconfig/:$PKG_CONFIG_PATH
+
+cd ~/ffmpeg_sources
+git clone http://source.ffmpeg.org/git/ffmpeg.git
+cd ffmpeg
+PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure --prefix="$HOME/ffmpeg_build" --extra-cflags="-I$HOME/ffmpeg_build/include" --extra-ldflags="-L$HOME/ffmpeg_build/lib" --bindir="$HOME/bin" --enable-gpl --enable-nonfree --enable-libfdk-aac --enable-libmp3lame  --enable-libvorbis --enable-libvpx --enable-libx264 --enable-pic --enable-shared
+make
+make install
+make distclean
+hash -r
+
+Set premanently env variables adding in ~/.bashrc 
+export LD_LIBRARY_PATH=$HOME/ffmpeg_build/lib/:$LD_LIBRARY_PATH
+export PKG_CONFIG_PATH=$HOME/ffmpeg_build/lib/pkgconfig/:$PKG_CONFIG_PATH
