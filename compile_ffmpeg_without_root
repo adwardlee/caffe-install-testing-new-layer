@@ -100,7 +100,7 @@ export PKG_CONFIG_PATH=$HOME/ffmpeg_build/lib/pkgconfig/:$PKG_CONFIG_PATH
 cd ~/ffmpeg_sources
 git clone http://source.ffmpeg.org/git/ffmpeg.git
 cd ffmpeg
-PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure --prefix="$HOME/ffmpeg_build" --extra-cflags="-I$HOME/ffmpeg_build/include" --extra-ldflags="-L$HOME/ffmpeg_build/lib" --bindir="$HOME/bin" --enable-gpl --enable-nonfree --enable-libfdk-aac --enable-libmp3lame  --enable-libvorbis --enable-libvpx --enable-libx264 --enable-pic --enable-shared
+PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure   --prefix="/home/vis/lijun/ffmpeg_libs"   --pkg-config-flags="--static"   --extra-cflags="-I/home/vis/lijun/ffmpeg_libs/include"   --extra-ldflags="-L/home/vis/lijun/ffmpeg_libs/lib"   --extra-libs=-lpthread   --extra-libs=-lm   --bindir="/home/vis/lijun/ffmpeg_libs/bin"   --enable-gpl   --enable-libfdk_aac  --enable-libmp3lame   --enable-libopus   --enable-libvorbis  --enable-libx264   --enable-libx265 --enable-nonfree --enable-avresample --enable-avformat --enable-avutil --enable-avdevice --enable-avfilter --enable-swresample --enable-swscale --enable-shared
 make
 make install
 make distclean
